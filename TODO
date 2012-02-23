@@ -1,0 +1,30 @@
+
+
+
+-> view instance helpers
+	-> teardown() // does teardown
+	-> events onTeardown(position)
+	-> .$() -> jQuery-single-elem
+	-> .$('.css-search') -> child elements
+	-> .$(jQuery instance | HTMLElement) assigns this objects dom
+	
+	// required to be defined by the user for it to be used in a collection
+	!! id() required to work with a collection
+	
+	// aquired only when added to a collection view! ...
+	-> collection()
+	-> removeFromCollection() //detach and delete these two functions
+
+-> collection specialisations:
+	-> $container[()]
+	-> add(subview, [position])
+	-> events onSubviewRemoved(subview, position) onSubviewAdded(subview, position)
+	-> find(id)
+
+
+collectionView {
+	$: 					func...
+	containerElement: func...
+}
+
+view = 
