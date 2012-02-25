@@ -27,35 +27,37 @@ Great model frameworks such as JsModel make the M part of MVC easy and consisten
 
 ## Features
 
-For any view...
+* Use ``VS.view(object, options)`` to provide views with
+	* a standard way to access the view's root element
+	* a standard way to destroy the view, unbinding all event listeners, helping to prevent memory leaks.
+* Use ``VS.collection(object, options)`` to also provide a view with helpers for manage a collection of subviews
 
-* a jQuery helper providing convenient access to the views container element and subtree
-* view teardown functionality that unbinds all event listeners to helper prevent memory leaks, removes the view from the DOM and fires an event.
+[``VS.view`` Usage]('docs/View.markdown')
+[``VS.collection`` Usage]('docs/CollectionView.markdown')
 
+## Browser and Platform Support
 
-## Usage
+Works in
 
-* LINK TO VIEW
-* LINK TO COLLECTION VIEW
+* Chrome 17+
+* Firefox 7+
+* Safari 5.13+
 
-
-What the collection mixin provides
-
-* get(id)
-* clear()
-* insert(VC.view, index)
-* append(VC.view)
-* remove(VC.view)
-* 
-
+Has not been tested in other browsers
 
 
 ## Acknowledgements
 
-* figlet
-* For convenience, I use the word 'class' to refer to a constructor-prototype pair despite having asserted that javascript doesn't have a class system.
+* [Figlet](http://www.figlet.org/) was used for the ASCII art
+* I haven't tested it in many browsers
 
 ## Contributing
+
+1. Install node
+2. Install [cup](https://github.com/sjltaylor/cup) and read the docs
+3. Write some code or docs
+4. Make a pull request
+5. Live happily ever after
 
 
 
