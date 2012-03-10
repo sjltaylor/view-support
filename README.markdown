@@ -1,9 +1,10 @@
-		__     ___                ____                               _      _     
-		\ \   / (_) _____      __/ ___| _   _ _ __  _ __   ___  _ __| |_   (_)___ 
-		 \ \ / /| |/ _ \ \ /\ / /\___ \| | | | '_ \| '_ \ / _ \| '__| __|  | / __|
-		  \ V / | |  __/\ V  V /  ___) | |_| | |_) | |_) | (_) | |  | |_ _ | \__ \
-		   \_/  |_|\___| \_/\_/  |____/ \__,_| .__/| .__/ \___/|_|   \__(_)/ |___/
-		                                     |_|   |_|                   |__/     
+	__     ___                ____                               _   
+	\ \   / (_) _____      __/ ___| _   _ _ __  _ __   ___  _ __| |_ 
+	 \ \ / /| |/ _ \ \ /\ / /\___ \| | | | '_ \| '_ \ / _ \| '__| __|
+	  \ V / | |  __/\ V  V /  ___) | |_| | |_) | |_) | (_) | |  | |_ 
+	   \_/  |_|\___| \_/\_/  |____/ \__,_| .__/| .__/ \___/|_|   \__|
+	                                     |_|   |_|                   
+ 
         
 
 ## Synopsis
@@ -27,7 +28,7 @@ Great model frameworks such as JsModel make the M part of MVC easy and consisten
 
 Provides a standard view interface including a way to get the view's root DOM element and to teardown a view unbinding all event listeners, helping to prevent memory leaks.
 
-[Usage Documentation]('docs/View.markdown') 	
+[Usage Documentation]('../docs/View.markdown') 	
 
 ### VS.collection
 
