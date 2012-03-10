@@ -26,6 +26,7 @@ Great model frameworks such as JsModel make the M part of MVC easy and consisten
 ### VS.view
 
 provides a standard view interface:
+
 	* a standard way to access the view's root element
 	* a standard way to destroy the view, unbinding all event listeners, helping to prevent memory leaks.
 
