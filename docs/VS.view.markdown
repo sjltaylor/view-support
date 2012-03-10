@@ -1,9 +1,10 @@
-# Views
+# VS.view
 
 This document describes support for Views
 
+* ``VS.view(object, options)``
 
-``VS.view(object, options)`` mixes functionality into object and should in view classes like this...
+To be used, most likely, in a constructor...
 
 		function ThingView () {
 			
@@ -18,30 +19,29 @@ This document describes support for Views
 			...
 		}
 
-## About ``options``
+## ``options``
 
-Options **must** include a ``$`` member which can be a jQuery or an HTMLElement representing the root element for the view. This will be stored on the object as an attribute: ``_$``.
+Options **must** include ``$``. ``$`` can be a jQuery or an HTMLElement representing the root element for the view.
 
-## ``VS.view()`` Mixin
+## Mixin Functions
 
-After ``VS.view()`` is called with an object the object will gain the following functions:
+The view following functions are mixed into the view:
 
 * ``id()``
 * ``$([css-query])``
 * ``detach()``
 * ``teardown()``
 
-... and some events...
+... and some events are defined ...
 
 * ``onDetached()`` 
 * ``onTeardown()`` 
 
 If the object already has any of the previously described members, they will not be replaced.
 
-
 ### ``id()``
 
-A unique generated identifier for the subview of the form 'VS-id-n' where n is a number. This is used to identify the view within a collection. See the CollectionView readme for more on how this can be used. to be used with a CollectionView the return value of this function must not change.
+Returns a unique identifier for the subview. See the [VS.collection](docs/VS.collection.markdown) readme for more on how this can be used with collection views. The id
 
 
 ### ``$()``
