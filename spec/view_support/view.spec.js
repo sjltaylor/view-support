@@ -39,20 +39,6 @@ describe('VS.view', function () {
 			});
 		});
 
-		describe('id()', function () {
-			
-			it('returns a permanent unique id', function () {
-				
-				var anotherObject = {};
-				VS.view(anotherObject, {$: $('<div>')});
-
-				expect(object.id()).toBe(1);
-				expect(object.id()).toBe(1);
-				
-				expect(anotherObject.id()).toBe(2);
-			});
-		});
-
 		describe('$()', function () {
 
 			describe('calling without parameters', function () {

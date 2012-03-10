@@ -3,10 +3,7 @@ VS.view = (function () {
 	var idSpool = 0;
 
 	var viewModule = {
-		id: function () {
-			return this.__id__ || (this.__id__ = ++idSpool);
-		}
-	, $: function () {
+		$: function () {
 			return arguments.length ? this.__$__.find.apply(this.__$__, arguments) : this.__$__;
 		}
 	, detach: function () {
@@ -45,8 +42,9 @@ VS.view = (function () {
 		}
 
 		object(view).mixin(viewModule);
-		view.__$__ = options.$;
-
+		view.__$__ 		= options.$;
+		view.__vsid__ = ++idSpool;
+		 
 		eventify(view, function () {
 			this.define('onTeardown');
 			this.define('onDetached');

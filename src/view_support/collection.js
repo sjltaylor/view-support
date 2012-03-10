@@ -1,7 +1,5 @@
 VS.collection = (function () {
 
-	var idSpool = 0;
-
 	var collectionModule = {
 		$: function () {
 			return arguments.length ? this.__$__.find.apply(this.__$__, arguments) : this.__$__;
@@ -13,14 +11,11 @@ VS.collection = (function () {
 			
 			subview.__parentCollection__ = thyself
 
-			thyself.__subviews__[subview.id()] = subview;
+			thyself.__subviews__[subview.__vsid__] = subview;
 
 			thyself.view.onSubviewAdded().emit(subview);
 
 			return thyself;
-		}
-	, get: function (id) {
-			return this.__subviews__[id];
 		}
 	, clear: function () {
 			object(this.__subviews__).each(function (subview) {
@@ -28,7 +23,9 @@ VS.collection = (function () {
 			});	
 		}
 	, each: function (callback) {
-			object(this.__subviews__).each(callback);
+			object(this.__subviews__).each(function (subview) {
+				callback(subview);
+			});
 			return this;
 		}
 	, toArray: function () {
@@ -41,7 +38,7 @@ VS.collection = (function () {
 			return Object.keys(this.__subviews__).length;
 		}
 	, __removeSubview__: function (subview) {
-			delete this.__subviews__[subview.id()];
+			delete this.__subviews__[subview.__id__];
 			this.view.onSubviewRemoved().emit(subview);
 		}
 	};

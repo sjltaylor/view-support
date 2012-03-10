@@ -84,48 +84,6 @@ describe('VS.collection', function () {
 		});
 	});
 
-	describe('#get(id)', function () {
-		
-		var view1, view2, collectionView;
-
-		beforeEach(function () {
-			
-			view1 = {
-				id: function () {
-					return 1;
-				}
-			};
-
-			VS.view(view1, {$: $('<div>').addClass('view1')});
-
-			view2 = {
-				id: function () {
-					return 2;
-				}
-			};
-
-			VS.view(view2, {$: $('<div>').addClass('view2')});
-
-			collectionView = {};
-			VS.collection(collectionView, {
-				$: $('<div>').addClass('spec-vs-collection').appendTo('body'), 
-				$container: $('<div>')
-			});
-
-			collectionView.collection.add(view1);
-			collectionView.collection.add(view2);
-		});
-
-		it('returns the subview with the corresponding id', function () {
-			expect(collectionView.collection.get(1)).toBe(view1);
-			expect(collectionView.collection.get(2)).toBe(view2);
-		});
-
-		it('returns undefined with an id not corresponding to a subview', function () {
-			expect(collectionView.collection.get('FEDEDEFFbsdkcjnsdkjfn')).toBeUndefined();
-		})
-	});
-
 	describe('#clear()', function () {
 		
 		var view1, view2, collectionView;
@@ -337,7 +295,7 @@ describe('VS.collection', function () {
 		it('removes the subview from the collection', function () {
 			collectionView.collection.add(view1);
 			view1.detach();
-			expect(collectionView.collection.get(view1.id())).toBeUndefined();
+			expect(collectionView.collection.__subviews__[view1.__id__]).toBeUndefined();
 		});
 	});
 
@@ -387,7 +345,7 @@ describe('VS.collection', function () {
 		it('removes the subview from the collection', function () {
 			collectionView.collection.add(view1);
 			view1.teardown();
-			expect(collectionView.collection.get(view1.id())).toBeUndefined();
+			expect(collectionView.collection.__subviews__[view1.__id__]).toBeUndefined();
 		});
 	});
 });	
