@@ -25,16 +25,13 @@ Great model frameworks such as JsModel make the M part of MVC easy and consisten
 
 ### VS.view
 
-provides a standard view interface:
-
-* a standard way to access the view's root element
-* a standard way to destroy the view, unbinding all event listeners, helping to prevent memory leaks.
+Provides a standard view interface including a way to get the view's root DOM element and to teardown a view unbinding all event listeners, helping to prevent memory leaks.
 
 [Usage Documentation]('docs/View.markdown') 	
 
 ### VS.collection
 
-provides helpers for managing a collection of subviews
+Helpers for managing a collection of subviews
 
 [Usage Documentation]('docs/CollectionView.markdown')
 
