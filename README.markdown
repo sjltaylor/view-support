@@ -23,13 +23,19 @@ Great model frameworks such as JsModel make the M part of MVC easy and consisten
 
 ## Features
 
-* Use ``VS.view(object, options)`` to provide views with
+### VS.view
+
+provides a standard view interface:
 	* a standard way to access the view's root element
 	* a standard way to destroy the view, unbinding all event listeners, helping to prevent memory leaks.
-* Use ``VS.collection(object, options)`` to also provide a view with helpers for manage a collection of subviews
 
-[``VS.view`` Usage]('docs/View.markdown')
-[``VS.collection`` Usage]('docs/CollectionView.markdown')
+[Usage Documentation]('docs/View.markdown') 	
+
+### VS.collection
+
+provides helpers for managing a collection of subviews
+
+[Usage Documentation]('docs/CollectionView.markdown')
 
 ## Browser and Platform Support
 
