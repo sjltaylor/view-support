@@ -34,7 +34,7 @@ Provides a standard view interface including a way to get the view's root DOM el
 
 Helpers for managing a collection of subviews
 
-[Usage Documentation]('https://github.com/sjltaylor/view-support/blob/master/docs/VS.collection.markdown')
+[Usage Documentation](docs/VS.collection.markdown)
 
 ## Browser and Platform Support
 
