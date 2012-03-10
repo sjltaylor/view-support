@@ -28,7 +28,7 @@ Great model frameworks such as JsModel make the M part of MVC easy and consisten
 
 Provides a standard view interface including a way to get the view's root DOM element and to teardown a view unbinding all event listeners, helping to prevent memory leaks.
 
-[Usage Documentation]('../docs/View.markdown') 	
+[Usage Documentation]('https://github.com/sjltaylor/view-support/blob/README.markdown') 	
 
 ### VS.collection
 
