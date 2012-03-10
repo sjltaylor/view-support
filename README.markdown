@@ -1,9 +1,10 @@
-		__     ___                ____                               _      _     
-		\ \   / (_) _____      __/ ___| _   _ _ __  _ __   ___  _ __| |_   (_)___ 
-		 \ \ / /| |/ _ \ \ /\ / /\___ \| | | | '_ \| '_ \ / _ \| '__| __|  | / __|
-		  \ V / | |  __/\ V  V /  ___) | |_| | |_) | |_) | (_) | |  | |_ _ | \__ \
-		   \_/  |_|\___| \_/\_/  |____/ \__,_| .__/| .__/ \___/|_|   \__(_)/ |___/
-		                                     |_|   |_|                   |__/     
+	__     ___                ____                               _   
+	\ \   / (_) _____      __/ ___| _   _ _ __  _ __   ___  _ __| |_ 
+	 \ \ / /| |/ _ \ \ /\ / /\___ \| | | | '_ \| '_ \ / _ \| '__| __|
+	  \ V / | |  __/\ V  V /  ___) | |_| | |_) | |_) | (_) | |  | |_ 
+	   \_/  |_|\___| \_/\_/  |____/ \__,_| .__/| .__/ \___/|_|   \__|
+	                                     |_|   |_|                   
+ 
         
 
 ## Synopsis
@@ -23,13 +24,17 @@ Great model frameworks such as JsModel make the M part of MVC easy and consisten
 
 ## Features
 
-* Use ``VS.view(object, options)`` to provide views with
-	* a standard way to access the view's root element
-	* a standard way to destroy the view, unbinding all event listeners, helping to prevent memory leaks.
-* Use ``VS.collection(object, options)`` to also provide a view with helpers for manage a collection of subviews
+### VS.view
 
-[``VS.view`` Usage]('docs/View.markdown')
-[``VS.collection`` Usage]('docs/CollectionView.markdown')
+Provides a standard view interface including a way to get the view's root DOM element and to teardown a view unbinding all event listeners, helping to prevent memory leaks.
+
+[Usage Documentation]('https://github.com/sjltaylor/view-support/blob/docs/VS.view.markdown') 	
+
+### VS.collection
+
+Helpers for managing a collection of subviews
+
+[Usage Documentation]('docs/CollectionView.markdown')
 
 ## Browser and Platform Support
 
