@@ -2,7 +2,7 @@
 
 This document describes additional support for Views which contain a collection of other Views such as a list.
 
-``VS.collection(object, options)`` mixes all of the functionality of ``VS.view(...)`` plus some additional functionality for managing a collection of subviews. Usage is similar to ``VS.view()``...
+``VS.collection(object, options)`` mixes all of the functionality of ``VS.view(...)`` plus some additional functionality for managing a collection of subviews which must themselves mixin ``VS.view()``. Usage is similar to ``VS.view()``...
 
 	function ThingsView () {
 		
@@ -19,7 +19,7 @@ This document describes additional support for Views which contain a collection 
 
 As with ``VS.view()`` options **must** specify a root container element as a jQuery or HTMLElement. With ``VS.collection()``, a ``$container`` may also be specified. The ``$container`` can be a string, jQuery or a HTMLElement and represents the DOM element that will contain collection entries. This can be used in cases where the views root is __not__ the container for collection entries.
 
-The specified ``$container`` is stored object object as the ``$container`` property unless instead of passing``$container`` as an option, you define a function called ``$container`` on its prototype ...
+The specified ``$container`` is stored object object as the ``$container`` property unless instead of passing ``$container`` as an option, you define a function called ``$container`` on its prototype ...
 
 		function ThingsView () {
 			VS.collection(this, {
@@ -50,27 +50,26 @@ The specified ``$container`` is stored object object as the ``$container`` prope
 
 ## ``VS.collection()`` Mixin
 
-After ``VC.collection()`` is called with an object the object will have all of the functions and events of a ``VS.view()`` as well as these functions...
+The collection view mixes in a ``VS.view``, defines extra events and adds a member with collection helpers to the object. The collection functionality is mixed into a nested 'collection' member so that
+it is upto the developer to decide which, if any, of the collection api is available on the view object. It is expect that the views collection of subviews is managed internally with the help of a delegate/presenter/model.
 
-* ``add(subview[, position])``: a subview to add to the collection with an optional insertion index. Adding by position is useful when using a collection view for a sorted model collection.
-* ``get(id)``: returns the subview corresponding to the given id.
-* ``clear()``: calls ``teardown()`` on all subviews.
+After ``VC.collection()`` is called with an object the object will have all of the functions and events of a ``VS.view()`` as well as these functions defined on a member object: ``collection``...
 
-... and these events ...	
+* ``collection.add(subview)``: a subview to add to the collection. The subview should have functions of a ``VS.view()``,
+* ``collection.get(id)``: returns the subview corresponding to the given id.
+* ``collection.clear()``: calls ``remove()`` on all subviews.
+* ``collection.each(callback)``: calls callback for each subview
+* ``collection.toArray()``: returns an array of subviews
+* ``collection.$()``: behaves just like ``$()`` from VS.view but instead acting on the container element
 
-* onSubviewAdded(subview, position)
-* onSubviewDetached(subview, position)
-* onSubviewTeardown(subview, position)
+... and these events on the view...	
 
-When a subview is added to a collection, two functions are mixed into the subview (unless they already exist) ...
+* ``onSubviewAdded(subview)``: when a subview is added to the collection
+* ``onSubviewRemoved(subview)``: when a subview is destroyed or detached 
 
-* ``collection()``: returns the collection to which the subview was added
-* ``removeFromCollection()``: removes the subview from the collection and removes the added methods and events.
+### Subview behaviour
 
-..and two events are defined on the added subview...
-
-* ``onAdded(position)``
-* ``onDetached(position)``
+``destroy()`` or ``detach()`` called on the subview will remove it from the collection.
 
 
 ### Defining a useful ``id()`` function on subviews
