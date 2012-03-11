@@ -1,6 +1,6 @@
 describe('VS.collection', function () {
 
-	describe('the mixin options', function () {
+	describe('the mixin', function () {
 		
 		it('allows the specification of a $container separate from the $ root element', function () {
 			
@@ -32,6 +32,22 @@ describe('VS.collection', function () {
 			expect(function () {
 				VS.view({}, { $: $('body')[0] });
 			}).not.toThrow();
+		});
+
+		it('doesnt overwrite view.collection', function () {
+			var collection = {}, view = { collection: collection };
+
+			VS.collection(view, { $: document.createElement('div') });
+
+			expect(view.collection).toBe(collection);
+		});
+
+		it('doesnt overwrite view.collection.view', function () {
+			var notView = {}, collection = { view: notView }, view = { collection: collection };
+
+			VS.collection(view, { $: document.createElement('div') });
+
+			expect(view.collection.view).toBe(notView);
 		});
 	});
 
