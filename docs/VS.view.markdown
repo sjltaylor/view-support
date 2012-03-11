@@ -2,7 +2,7 @@
 
 This document describes support for Views
 
-* ``VS.view(object, options)``
+Usage: ``VS.view(object, options)``
 
 To be used, most likely, in a constructor...
 
