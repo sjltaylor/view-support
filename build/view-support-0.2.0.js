@@ -79,7 +79,7 @@ THE SOFTWARE.*/;(function ($) {
 		}
 
 		var collection = {};
-		view.collection = collection;
+		view.collection = 'collection' in view ? view.collection : collection;
 		collection.view = view;
 
 		object(collection).mixin(collectionModule);
