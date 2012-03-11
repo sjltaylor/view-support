@@ -78,14 +78,13 @@ THE SOFTWARE.*/;(function ($) {
 			throw new Error('a jQuery or HTMLElement must be passed as $container');
 		}
 
-		var collection = {};
-		view.collection = 'collection' in view ? view.collection : collection;
-		collection.view = view;
+		view.collection = 'collection' in view ? view.collection : {};
+		view.collection.view = 'view' in view.collection ? view.collection.view : view;
 
-		object(collection).mixin(collectionModule);
+		object(view.collection).mixin(collectionModule);
 		
-		collection.__$__ 				= container;
-		collection.__subviews__ = {};
+		view.collection.__$__ 				= container;
+		view.collection.__subviews__ = {};
 
 		eventify(view, function () {
 			this.define('onSubviewAdded');
