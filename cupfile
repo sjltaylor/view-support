@@ -1,6 +1,6 @@
 {
     name: 'view-support'
-  , version: '0.1.1'
+  , version: '0.2.0'
   , licence: 'licence.txt'
   , javascripts: {
       spec: ['env/jasmine.js', 'env/jasmine-html.js', '*']

@@ -37,14 +37,18 @@ VS.view = (function () {
 	return function (view, options) {
 		options = options || {};
 
-		if (!((options.$ instanceof jQuery) || (options.$ instanceof HTMLElement))) {
+		var root = (options.$ instanceof HTMLElement) ? jQuery(options.$) : options.$;
+		
+		if (!(root instanceof jQuery)) {
 			throw new Error('a jQuery or HTMLElement must be passed as $');
 		}
 
 		object(view).mixin(viewModule);
-		view.__$__ 		= options.$;
+		view.__$__ 		= root;
 		view.__vsid__ = ++idSpool;
-		 
+		
+		view.$().data('viewSupportView', view);
+
 		eventify(view, function () {
 			this.define('onTeardown');
 			this.define('onDetached');

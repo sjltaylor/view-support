@@ -48,7 +48,11 @@ VS.collection = (function () {
 
 		VS.view(view, options);
 
-		if (options.$container && !((options.$container instanceof jQuery) || (options.$container instanceof HTMLElement))) {
+		var container = options.$container || options.$; 
+		
+		container = (container instanceof HTMLElement) ? jQuery(container) : container;
+
+		if (!(container instanceof jQuery)) {
 			throw new Error('a jQuery or HTMLElement must be passed as $container');
 		}
 
@@ -58,8 +62,7 @@ VS.collection = (function () {
 
 		object(collection).mixin(collectionModule);
 		
-		view.__$__ 				 			= options.$;
-		collection.__$__ 				= options.$container || options.$;
+		collection.__$__ 				= container;
 		collection.__subviews__ = {};
 
 		eventify(view, function () {

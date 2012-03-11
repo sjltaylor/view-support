@@ -20,8 +20,10 @@ describe('VS.view', function () {
 		});
 
 		it('accepts a HTMLElement as $', function () {
+			var view = {};
+			
 			expect(function () {
-				VS.view({}, { $: $('body')[0] });
+				VS.view(view, { $: $('body')[0] });
 			}).not.toThrow();
 		});
 	});
@@ -61,6 +63,12 @@ describe('VS.view', function () {
 				it('returns a jquery representing the element', function () {
 					
 					expect(object.$()).toBe($el);
+				});
+
+				it('returns a jQuery representing the element if we passed a HTMLElement', function () {
+					var view = {};
+					VS.view(view, {$: document.createElement('div') });
+					expect(view.$()).toBeInstanceOf(jQuery);
 				});
 
 				it('queries the withing the element if a jquery is passed', function () {
