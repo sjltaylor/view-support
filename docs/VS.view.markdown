@@ -19,15 +19,14 @@ To be used, most likely, in a constructor...
 			...
 		}
 
-## ``options``
+## Options
 
-Options **must** include ``$``. ``$`` can be a jQuery or an HTMLElement representing the root element for the view.
+Options must include ``$``. ``$`` can be a jQuery or an HTMLElement representing the root element for the view.
 
 ## Mixin Functions
 
 The view following functions are mixed into the view:
 
-* ``id()``
 * ``$([css-query])``
 * ``detach()``
 * ``teardown()``
@@ -38,11 +37,6 @@ The view following functions are mixed into the view:
 * ``onTeardown()`` 
 
 If the object already has any of the previously described members, they will not be replaced.
-
-### ``id()``
-
-Returns a unique identifier for the subview. See the [VS.collection](docs/VS.collection.markdown) readme for more on how this can be used with collection views. The id
-
 
 ### ``$()``
 
@@ -55,7 +49,7 @@ This function can be called without arguments to get ajQuery representing the vi
 2. If the subview is a member of a collection, it is removed
 3. Emits an onDetached event
 
-### ``destroy()``
+### ``teardown()``
 
 1. Removes the element from the DOM unbinding DOM event listeners
 2. If the subview is a member of a collection, it is removed
