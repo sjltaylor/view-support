@@ -15,7 +15,7 @@ Use this instead of ``VS.view`` when the view will contain a collection of other
 
 	ThingsView.prototype = {...}	
 
-## About ``options``
+## Options
 
 As with ``VS.view()`` options must specify a root element as a jQuery or HTMLElement. With ``VS.collection()``, a ``$container`` may be specified so that the element containing subviews is not the same as the root.
 
