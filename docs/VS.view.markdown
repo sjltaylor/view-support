@@ -38,18 +38,18 @@ The view following functions are mixed into the view:
 
 If the object already has any of the previously described members, they will not be replaced.
 
-### ``$()``
+### $()
 
 This function can be called without arguments to get ajQuery representing the views root element: ``view.$()`` or with arguments to jQuery within the view ``view.$('.my-css-class')`` (which is simply a shortcut for ``view.$().find('.my-css-class')``)
 
 
-### ``detach()``
+### detach()
 
 1. Detaches the element from the DOM, preserving DOM event listeners
 2. If the subview is a member of a collection, it is removed
 3. Emits an onDetached event
 
-### ``teardown()``
+### teardown()
 
 1. Removes the element from the DOM unbinding DOM event listeners
 2. If the subview is a member of a collection, it is removed
