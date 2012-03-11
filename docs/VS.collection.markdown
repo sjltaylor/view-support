@@ -2,7 +2,7 @@
 
 Use this instead of ``VS.view`` when the view will contain a collection of other views, such as a list.
 
-``VS.collection(object, options)`` mixes all of the functionality of ``VS.view(...)`` plus some additional functionality for managing a collection of subviews which must themselves mixin ``VS.view()``. Usage is similar to ``VS.view()``...
+``VS.collection(object, options)`` mixes all of the functionality of ``VS.view(...)`` plus some functions for managing a collection of subviews which must themselves mixin ``VS.view()``. Usage is similar to ``VS.view()``...
 
 	function ThingsView () {
 		
@@ -17,7 +17,7 @@ Use this instead of ``VS.view`` when the view will contain a collection of other
 
 ## Options
 
-As with ``VS.view()`` options must specify a root element as a jQuery or HTMLElement. With ``VS.collection()``, a ``$container`` may be specified so that the element containing subviews is not the same as the root.
+As with ``VS.view()`` options must specify a root element as a jQuery or HTMLElement. With ``VS.collection()``, a ``$container`` option may specified a subview container other than the root.
 
 ## Mixin Functions
 
@@ -29,7 +29,7 @@ Collection helper functions are mixed into a a ``collection`` member:
 * ``collection.clear()``: calls ``remove()`` on all subviews.
 * ``collection.each(callback)``: calls callback for each subview
 * ``collection.toArray()``: returns an array of subviews
-* ``collection.$()``: behaves just like ``$()`` from VS.view but instead acting on the container element
+* ``collection.$()``: behaves just like ``$()`` from VS.view but instead acting on the $container element (which defaults to the root)
 
 ... and these events on the view...	
 
