@@ -27,13 +27,13 @@ Helpers for views
 
 VS.view also defines other functions/events...
 
-[Full Documentation](view-support/docs/VS.view.markdown) 	
+[Full Documentation](docs/VS.view.markdown) 	
 
 ### VS.collection
 
 Helpers for managing a collection of subviews such as a list
 
-[Full Documentation](view-support/docs/VS.collection.markdown)
+[Full Documentation](docs/VS.collection.markdown)
 
 ## Dependencies
 
