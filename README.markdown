@@ -14,15 +14,26 @@ ViewSupport provides some conventions and tools for javascript view objects.
 
 ### VS.view
 
-Provides a standard view interface including a way to get the view's root DOM element and to teardown a view unbinding all event listeners, helping to prevent memory leaks.
+Helpers for views
 
-[Usage Documentation](docs/VS.view.markdown) 	
+    view.$()
+    => the view's root DOM jQuery
+
+    view.$('.something')
+    => shorthand for view.$().find('.something')
+
+    view.teardown()
+    => removes the view from the DOM and unbinds event handlers helping to prevent memory leaks.
+
+VS.view also defines other functions/events...
+
+[Full Documentation](docs/VS.view.markdown) 	
 
 ### VS.collection
 
-Helpers for managing a collection of subviews
+Helpers for managing a collection of subviews such as a list
 
-[Usage Documentation](docs/VS.collection.markdown)
+[Full Documentation](docs/VS.collection.markdown)
 
 ## Dependencies
 
