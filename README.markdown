@@ -42,7 +42,7 @@ MyView instances have helper functions and [eventify](https://github.com/sjltayl
 			...// do something!
 		});
 		
-See `[VS.view documentation](https://github.com/sjltaylor/view-support/wiki/VS.view)` for a full listing
+See [`VS.view documentation`](https://github.com/sjltaylor/view-support/wiki/VS.view) for a full listing
 
 
 ### VS.collection
@@ -76,7 +76,7 @@ Collection helper functions for managing a collection view:
 		// iterate subviees
 		this.collection.each(function (subview) { ... })
 
-See `[VS.collection documentation](https://github.com/sjltaylor/view-support/wiki/VS.view)` for full details
+See [`VS.collection documentation`](https://github.com/sjltaylor/view-support/wiki/VS.view) for full details
 
 ## Dependencies
 
