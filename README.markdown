@@ -14,7 +14,7 @@ ViewSupport provides some conventions and tools for javascript view objects.
 
 ### VS.view
 
-Helpers for views
+Helpers for views:
 
     view.$()
     => the view's root DOM jQuery
@@ -27,13 +27,27 @@ Helpers for views
 
 VS.view also defines other functions/events...
 
-[Full Documentation](docs/VS.view.markdown) 	
 
 ### VS.collection
 
-Helpers for managing a collection of subviews such as a list
+Collection helpers for managing a view which is a collection of subviews:
 
-[Full Documentation](docs/VS.collection.markdown)
+		// add a view to the collection and the DOM
+		view.collection.add(subview)
+		
+		// remove the view
+		view.collection.remove(subview)
+		
+		// clear and remove all subviews
+		view.collection.clear()
+		
+		// iterate subviees
+		view.collection.each(function (subview) { ... })
+	
+
+## Documentation
+
+Full Documentation is [available on the wiki](https://github.com/sjltaylor/view-support/wiki)
 
 ## Dependencies
 
