@@ -16,19 +16,19 @@ ViewSupport provides some conventions and tools for javascript view objects. Thi
 
 ### VS.view
 
-		/*
-			The view functions are mixed into an object, typically in a constructor
-		*/
-		function MyView () {
-			// all the mixin requires is a jQuery or HTMLElement root
-			VS.view(this, { $: jQuery('#my_view') });
-			...
-		}
+    /*
+      The view functions are mixed into an object, typically in a constructor
+    */
+    function MyView () {
+      // all the mixin requires is a jQuery or HTMLElement root
+      VS.view(this, { $: jQuery('#my_view') });
+      ...
+    }
 
 MyView instances have helper functions and [eventify](https://github.com/sjltaylor/eventify) events:
-		
-		var view = new MyView;
-		
+    
+    var view = new MyView;
+    
     view.$()
     => the view's root DOM jQuery #my_view
 
@@ -37,18 +37,18 @@ MyView instances have helper functions and [eventify](https://github.com/sjltayl
 
     view.teardown()
     => removes the view from the DOM and unbinds event handlers helping to prevent memory leaks.
-	
-		view.onRemoved(function () {
-			...// do something!
-		});
-		
+  
+    view.onRemoved(function () {
+      ...// do something!
+    });
+    
 See [`VS.view documentation`](https://github.com/sjltaylor/view-support/wiki/VS.view) for a full listing
 
 
 ### VS.collection
 
-		/*
-			Similarly, collection functions are mixed into an object, also typically in a constructor
+    /*
+      Similarly, collection functions are mixed into an object, also typically in a constructor
 		*/
 		function MyList () {
 			
@@ -106,19 +106,3 @@ Has not been tested in other browsers
 3. Write some code or docs
 4. Make a pull request
 5. Live happily ever after
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
