@@ -5,17 +5,10 @@
 	   \_/  |_|\___| \_/\_/  |____/ \__,_| .__/| .__/ \___/|_|   \__|
 	                                     |_|   |_|                   
  
-        
 
 ## Synopsis
 
-View support provides some conventions, best practices and tools to make it easy to build view objects that have a consistent interface.
-
-
-## Motivation
-
-Great model frameworks such as JsModel make the M part of MVC easy and consistent. ViewSupport.js aims to do the same for views and is a thing layer over what browsers already provide. 
-
+ViewSupport provides some conventions and tools for javascript view objects.
 
 ## Features
 
@@ -31,6 +24,12 @@ Helpers for managing a collection of subviews
 
 [Usage Documentation](docs/VS.collection.markdown)
 
+## Dependencies
+
+* [Object.js](https://github.com/sjltaylor/object.js). Familiarity not required.
+* [Eventify](https://github.com/sjltaylor/eventify). Familiarity required for event programming.
+* [jQuery](http://jquery.com)
+
 ## Browser and Platform Support
 
 Works in
@@ -40,12 +39,6 @@ Works in
 * Safari 5.13+
 
 Has not been tested in other browsers
-
-## Dependencies
-
-* [Object.js](https://github.com/sjltaylor/object.js). Familiarity not required.
-* [Eventify](https://github.com/sjltaylor/eventify). Familiarity required for event programming.
-* [jQuery](http://jquery.com)
 
 ## Acknowledgements
 
