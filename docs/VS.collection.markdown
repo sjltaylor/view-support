@@ -1,8 +1,8 @@
-# Collection Views
+# VS.collection
 
-This document describes additional support for Views which contain a collection of other Views such as a list.
+Use this instead of ``VS.view`` when the view will contain a collection of other views, such as a list.
 
-``VS.collection(object, options)`` mixes all of the functionality of ``VS.view(...)`` plus some additional functionality for managing a collection of subviews which must themselves mixin ``VS.view()``. Usage is similar to ``VS.view()``...
+``VS.collection(object, options)`` mixes all of the functionality of ``VS.view(...)`` plus some functions for managing a collection of subviews which must themselves mixin ``VS.view()``. Usage is similar to ``VS.view()``...
 
 	function ThingsView () {
 		
@@ -15,95 +15,54 @@ This document describes additional support for Views which contain a collection 
 
 	ThingsView.prototype = {...}	
 
-## About ``options``
+## Options
 
-As with ``VS.view()`` options **must** specify a root container element as a jQuery or HTMLElement. With ``VS.collection()``, a ``$container`` may also be specified. The ``$container`` can be a string, jQuery or a HTMLElement and represents the DOM element that will contain collection entries. This can be used in cases where the views root is __not__ the container for collection entries.
+As with ``VS.view()`` options must specify a root element as a jQuery or HTMLElement. With ``VS.collection()``, a ``$container`` option may specified a subview container other than the root.
 
-The specified ``$container`` is stored object object as the ``$container`` property unless instead of passing ``$container`` as an option, you define a function called ``$container`` on its prototype ...
+## Mixin Functions
 
-		function ThingsView () {
-			VS.collection(this, {
-				$: ...
-			});
-		}
+The collection view mixes in a ``VS.view``, adds a collection helper and defines extra events. The collection functions are mixed into a nested 'collection' member so that it is upto the developer to decide which, if any, of the collection api is available on the view object. It is expect that the views collection of subviews is managed internally.
 
-		ThingsView.prototype = {
-			$container: function () {
-				return // a jQuery represdenting the collection element;
-			}
-		}
-
-... or assign it as a member in the constructor ...
-
-		function ThingsView () {
-			
-			VS.collection(this, {
-				$: ...
-			});
-
-			// using the view-support $() member
-			this.$container = this.$('ul.list');
-		}
-
-... in either of these cases a ``$container`` given in the options will be ignored.
-
-
-## ``VS.collection()`` Mixin
-
-The collection view mixes in a ``VS.view``, defines extra events and adds a member with collection helpers to the object. The collection functionality is mixed into a nested 'collection' member so that
-it is upto the developer to decide which, if any, of the collection api is available on the view object. It is expect that the views collection of subviews is managed internally with the help of a delegate/presenter/model.
-
-After ``VC.collection()`` is called with an object the object will have all of the functions and events of a ``VS.view()`` as well as these functions defined on a member object: ``collection``...
+Collection helper functions are mixed into a a ``collection`` member:
 
 * ``collection.add(subview)``: a subview to add to the collection. The subview should have functions of a ``VS.view()``,
-* ``collection.get(id)``: returns the subview corresponding to the given id.
 * ``collection.clear()``: calls ``remove()`` on all subviews.
 * ``collection.each(callback)``: calls callback for each subview
 * ``collection.toArray()``: returns an array of subviews
-* ``collection.$()``: behaves just like ``$()`` from VS.view but instead acting on the container element
+* ``collection.$()``: behaves just like ``$()`` from VS.view but instead acting on the $container element (which defaults to the root)
 
 ... and these events on the view...	
 
 * ``onSubviewAdded(subview)``: when a subview is added to the collection
 * ``onSubviewRemoved(subview)``: when a subview is destroyed or detached 
 
+Example Usage...
+
+		function MyListOfThings () {
+			VS.collection(this, { $: $('#the_list'), $('#the_list ul') });
+		}
+		
+		MyListOfThings.prototype = {
+			update: function () {
+				var self = this;
+				
+				self.collection.clear();
+				
+				self.model.forEach(function (thing) {
+					
+					var thingView = createAThingView(thing);
+					self.collection.add(thingView);
+				});
+				
+				...
+			}
+		, hideList: function () {
+				this.collection.$().hide();
+			}
+
 ### Subview behaviour
 
-``destroy()`` or ``detach()`` called on the subview will remove it from the collection.
+``destroy()`` or ``detach()`` called on the subview will remove it from the collection and cause the collection view to emit an onSubviewRemoved event.
 
 
-### Defining a useful ``id()`` function on subviews
-
-The ``VS.view()`` mixin includes an ``id()`` function. Each id is generated at runtime on the client. While this is convenient there are many times when it would be better for a view's ``id()`` to correspond to an database record identifier for the model that the view represents. This would allow the view and its collection to be used in the following way from the console...
-
-
-// some time earlier on the views were constructed...
-
-
-app = {
-	...
-,	thingsView: new ThingsView
-, ...
-};
-
-// Let's say the ThingsView prototype has a a function to show a thing...
-
-ThingsView.prototype = {
-	showThing: function (id) {
-		var thingView = this.get(id);
-		// hide all of the others somehow...
-		this.hideAllThingsExcept(thingView);
-		thingView.highlight();
-		// etc...
-	}
-}
-
-// Each ThingView within the ThingsView implement an id function that
-// corresponds to their model's database record id.
-// Then, when an onpopstate event occured and the new url is '/things/124'
-// a handler can do this...
-
-function someKindOfRouteHandler (parsedThingId) {
-	app.thingsView.showThing(parsedThingId);
-}
 
