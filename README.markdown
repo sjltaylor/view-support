@@ -6,34 +6,77 @@
 	                                     |_|   |_|                   
  
 
-## Synopsis
+## Overview
 
-ViewSupport provides some conventions and tools for javascript view objects.
+ViewSupport provides some conventions and tools for javascript view objects. This library comprises:
 
-## Features
+1. `VS.view`: helper functions for a view object
+2. `VS.collection`: additional helper functions for list/collection views
+3. A jQuery plugin which returns the view object for a DOM element
 
 ### VS.view
 
-Helpers for views
+		/*
+			The view functions are mixed into an object, typically in a constructor
+		*/
+		function MyView () {
+			// all the mixin requires is a jQuery or HTMLElement root
+			VS.view(this, { $: jQuery('#my_view') });
+			...
+		}
 
+MyView instances have helper functions and [eventify](https://github.com/sjltaylor/eventify) events:
+		
+		var view = new MyView;
+		
     view.$()
-    => the view's root DOM jQuery
+    => the view's root DOM jQuery #my_view
 
     view.$('.something')
     => shorthand for view.$().find('.something')
 
     view.teardown()
     => removes the view from the DOM and unbinds event handlers helping to prevent memory leaks.
+	
+		view.onRemoved(function () {
+			...// do something!
+		});
+		
+See [`VS.view documentation`](https://github.com/sjltaylor/view-support/wiki/VS.view) for a full listing
 
-VS.view also defines other functions/events...
-
-[Full Documentation](docs/VS.view.markdown) 	
 
 ### VS.collection
 
-Helpers for managing a collection of subviews such as a list
+		/*
+			Similarly, collection functions are mixed into an object, also typically in a constructor
+		*/
+		function MyList () {
+			
+			// the collection mixin requires a jQuery or HTMLElement root
+			// a container element can also be specified, see full docs
+			VS.collection(this, { $: jQuery('#list1') });
+			...
+		}
 
-[Full Documentation](docs/VS.collection.markdown)
+Collection helper functions for managing a collection view:
+	
+		/*
+			functions are mixed into a 'collection' member of the MyList instance to avoid naming collisions			 
+		*/
+		
+		// add a view to the collection and the DOM
+		this.collection.add(subview)
+		
+		// remove the view
+		this.collection.remove(subview)
+		
+		// clear and remove all subviews
+		this.collection.clear()
+		
+		// iterate subviees
+		this.collection.each(function (subview) { ... })
+
+See [`VS.collection documentation`](https://github.com/sjltaylor/view-support/wiki/VS.view) for full details
 
 ## Dependencies
 
