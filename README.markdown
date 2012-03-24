@@ -11,16 +11,11 @@
 
 View support provides some conventions, best practices and tools to make it easy to build view objects that have a consistent interface.
 
+
 ## Motivation
 
 Great model frameworks such as JsModel make the M part of MVC easy and consistent. ViewSupport.js aims to do the same for views and is a thing layer over what browsers already provide. 
 
-
-## Dependencies
-
-* [Object.js](https://github.com/sjltaylor/object.js) for mixin functionality. You do not need to be familiar with this library to use view support
-* [Eventify.js](https://github.com/sjltaylor/eventify) for event functionality. you should be familiar with eventify if you expect to use the events that view-support declares for views
-* [jQuery](http://jquery.com). For DOM manipulation and DOM querying.
 
 ## Features
 
@@ -46,6 +41,11 @@ Works in
 
 Has not been tested in other browsers
 
+## Dependencies
+
+* [Object.js](https://github.com/sjltaylor/object.js). Familiarity not required.
+* [Eventify](https://github.com/sjltaylor/eventify). Familiarity required for event programming.
+* [jQuery](http://jquery.com)
 
 ## Acknowledgements
 
