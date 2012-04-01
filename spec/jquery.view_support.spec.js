@@ -1,12 +1,12 @@
 describe('jquery.view_support', function () {
 
-	describe('when the jQuery represents the root of a VS.view', function () {
+	describe('when the jQuery represents the root of a view', function () {
 
 		var view;
 
 		beforeEach(function () {
 			view = {};
-			VS.view(view, { $: $('<div id="view_root1">').appendTo('body') });
+			viewSupport(view, $('<div id="view_root1">').appendTo('body'));
 		});
 		
 		it('jQuery.view() returns the view corresponding to the root element', function () {

@@ -1,29 +1,25 @@
-describe('VS.view', function () {
+describe('viewSupport.view', function () {
 	
 	describe('the mixin options', function () {
 		
-		it('throws an error if no $ is passed in the options', function () {
+		it('throws an error if no root is passed in the options', function () {
 			
 			expect(function () {
-				VS.view({});
-			}).toThrow('a jQuery or HTMLElement must be passed as $');
-
-			expect(function () {
-				VS.view({}, {});
+				viewSupport({});
 			}).toThrow('a jQuery or HTMLElement must be passed as $');
 		});
 
-		it('throws an error if a $ is passed but not a jQuery or HTMLElement', function () {
+		it('throws an error if a root is passed but not a jQuery or HTMLElement', function () {
 			expect(function () {
-				VS.view({}, { $: {} });
+				viewSupport({}, 123);
 			}).toThrow('a jQuery or HTMLElement must be passed as $');
 		});
 
-		it('accepts a HTMLElement as $', function () {
+		it('accepts a HTMLElement as root', function () {
 			var view = {};
 			
 			expect(function () {
-				VS.view(view, { $: $('body')[0] });
+				viewSupport(view, $('body')[0]);
 			}).not.toThrow();
 		});
 	});
@@ -36,9 +32,11 @@ describe('VS.view', function () {
 			object = {};
 			fragment = $('<div>');
 
-			VS.view(object, {
-				$: fragment
-			});
+			viewSupport(object, fragment);
+		});
+
+		it('defines the teardown event as a single event', function () {
+			expect(object.onTeardown.isSingle()).toBe(true);
 		});
 
 		describe('$()', function () {
@@ -55,9 +53,7 @@ describe('VS.view', function () {
 
 					object = {};
 
-					VS.view(object, {
-						$: $el
-					});
+					viewSupport(object, $el);
 				});
 
 				it('returns a jquery representing the element', function () {
@@ -67,7 +63,7 @@ describe('VS.view', function () {
 
 				it('returns a jQuery representing the element if we passed a HTMLElement', function () {
 					var view = {};
-					VS.view(view, {$: document.createElement('div') });
+					viewSupport(view, document.createElement('div'));
 					expect(view.$()).toBeInstanceOf(jQuery);
 				});
 
@@ -92,7 +88,7 @@ describe('VS.view', function () {
 
 				$root.bind('an-event', domEventHandler);
 
-				VS.view(view, { $: $root });
+				viewSupport(view, $root);
 
 				view.onDetached(viewEventHandler);
 			});
@@ -107,7 +103,7 @@ describe('VS.view', function () {
 				expect($root.detach).toHaveBeenCalled();
 				expect($root.remove).not.toHaveBeenCalled();
 
-				expect(view.onDetached().subscriptions().count()).toBe(1);
+				expect(view.onDetached.subscriptions().count()).toBe(1);
 
 				$root.trigger('an-event');
 
@@ -133,7 +129,7 @@ describe('VS.view', function () {
 
 				$root.bind('some-event', domEventHandler);
 
-				VS.view(view, { $: $root });
+				viewSupport(view, $root );
 
 				view.onTeardown(viewEventHandler);
 			});
@@ -141,7 +137,7 @@ describe('VS.view', function () {
 			it('results in the unbinding of DOM event handlers', function () {
 				var $r = $('<div>').appendTo('body');
 				var view = {};
-				VS.view(view, { $: $r });
+				viewSupport(view, $r);
 				var called = false;
 				$r.bind('onevent', function () {
 					called = true;
@@ -169,16 +165,14 @@ describe('VS.view', function () {
 
 			it('cancels all subscriptions to all events on the view', function () {
 				
-				eventify(view, function () {
-					this.define('onSomething');
-				});
+				eventify(view).define('onSomething');
 
 				view.onSomething(function doSomething(){});
 
 				view.teardown();
 				
-				expect(view.onDetached().subscriptions().count()).toBe(0);
-				expect(view.onSomething().subscriptions().count()).toBe(0);
+				expect(view.onDetached.subscriptions().count()).toBe(0);
+				expect(view.onSomething.subscriptions().count()).toBe(0);
 			});
 		});
 	});

@@ -1,57 +1,50 @@
-VS.view = (function () {
+viewSupport.view = (function () {
 
-	var idSpool = 0;
+  var idSpool = 0;
 
-	var viewModule = {
-		$: function () {
-			return arguments.length ? this.__$__.find.apply(this.__$__, arguments) : this.__$__;
-		}
-	, detach: function () {
-			
-			this.$().detach();
-			this.onDetached().emit();
+  var view = {
+    __mixin__: function (root) {
+        
+      eventify(this)
+        .define('onDetached')
+        .single('onTeardown');
 
-			if (this.__parentCollection__) {
-				this.__parentCollection__.__removeSubview__(this);
-			}
-		}
-	, teardown: function () {
-			
-			if ('collection' in this) {
-				this.collection.each(function (subview) {
-					subview.teardown();
-				});
-			}
+      this.__$__    = root;
+      this.__vsid__ = ++idSpool;
 
-			this.$().remove();
-			this.onTeardown().emit();
+      this.$().data('viewSupport.view', this);
+    }
+  , $: function () {
+      return arguments.length ? this.__$__.find.apply(this.__$__, arguments) : this.__$__;
+    }
+  , detach: function () {
+      
+      this.$().detach();
 
-			if (this.__parentCollection__) {
-				this.__parentCollection__.__removeSubview__(this);
-			}
+      this.onDetached.emit();
 
-			this.eventify.cancelAllSubscriptions(this);
-		}
-	};
+      if (this.__parentCollection__) {
+        this.__parentCollection__.__removeSubview__(this);
+      }
+    }
+  , teardown: function () {
+      
+      if ('collection' in this) {
+        this.collection.each(function (subview) {
+          subview.teardown();
+        });
+      }
 
-	return function (view, options) {
-		options = options || {};
+      this.$().remove();
+      this.onTeardown.emit();
 
-		var root = (options.$ instanceof HTMLElement) ? jQuery(options.$) : options.$;
-		
-		if (!(root instanceof jQuery)) {
-			throw new Error('a jQuery or HTMLElement must be passed as $');
-		}
+      if (this.__parentCollection__) {
+        this.__parentCollection__.__removeSubview__(this);
+      }
 
-		object(view).mixin(viewModule);
-		view.__$__ 		= root;
-		view.__vsid__ = ++idSpool;
-		
-		view.$().data('viewSupportView', view);
+      this.events.cancelAllSubscriptions(this);
+    }
+  };
 
-		eventify(view, function () {
-			this.define('onTeardown');
-			this.define('onDetached');
-		});
-	};
+  return view;
 })();
