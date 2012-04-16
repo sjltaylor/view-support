@@ -7,18 +7,19 @@
 
 !! not current. see wiki 
 
-## Overview
 
 ViewSupport provides some conventions and tools for javascript view objects. This library comprises:
 
-1. `VS.view`: helper functions for a view object
-2. `VS.collection`: additional helper functions for list/collection views
-3. A jQuery plugin which returns the view object for a DOM element
+1. `VS.view`: helper functions view objects
+2. `VS.collection`: helper functions for list/collection views
+3. A jQuery plugin
+
+
 
 ### VS.view
 
     /*
-      The view functions are mixed into an object, typically in a constructor
+      VS.view helper functions are mixed into an object, typically in a constructor
     */
     function MyView () {
       // all the mixin requires is a jQuery or HTMLElement root
@@ -26,7 +27,7 @@ ViewSupport provides some conventions and tools for javascript view objects. Thi
       ...
     }
 
-MyView instances have helper functions and [eventify](https://github.com/sjltaylor/eventify) events:
+`MyView` instances have helper functions and [eventify](https://github.com/sjltaylor/eventify) events:
     
     var view = new MyView;
     
@@ -43,13 +44,15 @@ MyView instances have helper functions and [eventify](https://github.com/sjltayl
       ...// do something!
     });
     
-See [`VS.view documentation`](https://github.com/sjltaylor/view-support/wiki/VS.view) for a full listing
+See [VS.view documentation](https://github.com/sjltaylor/view-support/wiki/VS.view) for a full listing
+
+
 
 
 ### VS.collection
 
     /*
-      Similarly, collection functions are mixed into an object, also typically in a constructor
+      Similarly, VC.collection functions are mixed into an object, typically in a constructor
     */
     function MyList () {
       
@@ -59,7 +62,7 @@ See [`VS.view documentation`](https://github.com/sjltaylor/view-support/wiki/VS.
       ...
     }
 
-Collection helper functions for managing a collection view:
+Collection helper functions:
   
     /*
       functions are mixed into a 'collection' member of the MyList instance to avoid naming collisions       
@@ -77,15 +80,21 @@ Collection helper functions for managing a collection view:
     // iterate subviees
     this.collection.each(function (subview) { ... })
 
-See [`VS.collection documentation`](https://github.com/sjltaylor/view-support/wiki/VS.view) for full details
+See [VS.collection documentation](https://github.com/sjltaylor/view-support/wiki/VS.view) for full details
 
-## Dependencies
+### Documentation
+
+Full documentation [available on the wiki](https://github.com/sjltaylor/view-support/wiki)
+
+### Dependencies
 
 * [Object.js](https://github.com/sjltaylor/object.js). Familiarity not required.
 * [Eventify](https://github.com/sjltaylor/eventify). Familiarity required for event programming.
 * [jQuery](http://jquery.com)
 
-## Browser and Platform Support
+
+
+### Browser and Platform Support
 
 Works in
 
@@ -95,12 +104,16 @@ Works in
 
 Has not been tested in other browsers
 
-## Acknowledgements
+
+
+### Acknowledgements
 
 * [Figlet](http://www.figlet.org/) was used for the ASCII art
 * I haven't tested it in many browsers
 
-## Contributing
+
+
+### Contributing
 
 1. Install node
 2. Install [cup](https://github.com/sjltaylor/cup) and read the docs
