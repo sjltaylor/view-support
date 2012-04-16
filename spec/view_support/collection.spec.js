@@ -2,7 +2,7 @@ describe('viewSupport.collection', function () {
 
 	describe('the mixin', function () {
 		
-		it('allows the specification of a $container separate from the $ root element', function () {
+		it('allows the specification of a $container separate from the root element', function () {
 			
 			var view = {};
 			var container = $('<div>');
